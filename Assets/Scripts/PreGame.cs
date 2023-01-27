@@ -12,7 +12,10 @@ public class PreGame : MonoBehaviour
     public static event TimeOut OnTimeOut;
     private void Start()
     {
-        Debug.Log("PreGame begins");
+        GameManager.Instance.initalPos = 
+            GameManager.Shuffle(GameManager.Instance.initalPos);
+        GameManager.Instance.SetGrabablesPos(GameManager.Instance.initalPos);
+        GameManager.Instance.finalPos = GameManager.Instance.initalPos;
         StartCoroutine("CountDown");
     }
     IEnumerator CountDown()

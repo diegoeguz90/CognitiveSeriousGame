@@ -11,7 +11,9 @@ public class DuringGame : MonoBehaviour
 
     void PlayTheGame()
     {
-        Debug.Log("Gameplay begins");
+        GameManager.Instance.finalPos = 
+            GameManager.Shuffle(GameManager.Instance.initalPos);
+        GameManager.Instance.SetGrabablesPos(GameManager.Instance.finalPos);
         StartCoroutine("CountDown");
     }
     IEnumerator CountDown()
