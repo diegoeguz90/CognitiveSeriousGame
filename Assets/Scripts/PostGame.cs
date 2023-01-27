@@ -6,7 +6,9 @@ public class PostGame : MonoBehaviour
 {
     void CaculateScore()
     {
-        Debug.Log("Showing score");
+        GameManager.Instance.userPos = GameManager.Instance.GetGrabablesPos();
+        int score = GameManager.Instance.CalculateScore();
+        GameManager.Instance.SetMessageOnScene("The score is: " + score);
     }
 
     #region EventSuscription

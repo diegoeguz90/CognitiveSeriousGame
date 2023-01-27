@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DuringGame : MonoBehaviour
 {
-    [SerializeField] float waitTime = 10.0f;
+    [SerializeField] float waitTime = 60.0f;
     // this is the event
     public delegate void TimeOut();
     public static event TimeOut OnTimeOut;
@@ -21,7 +21,7 @@ public class DuringGame : MonoBehaviour
         while (waitTime > 0)
         {
             waitTime -= Time.deltaTime;
-            Debug.Log("Limit time: " + waitTime.ToString("F0"));
+            GameManager.Instance.SetMessageOnScene("Limit time: " + waitTime.ToString("F0"));
             yield return null;
         }
         yield return new WaitForSeconds(0.3f);

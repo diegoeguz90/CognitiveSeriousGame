@@ -6,7 +6,7 @@ using UnityEngine;
 public class PreGame : MonoBehaviour
 {
 
-    [SerializeField] float waitTime = 3.0f;
+    [SerializeField] float waitTime = 5.0f;
     // this is the event
     public delegate void TimeOut();
     public static event TimeOut OnTimeOut;
@@ -23,7 +23,7 @@ public class PreGame : MonoBehaviour
         while (waitTime > 0)
         {
             waitTime -= Time.deltaTime;
-            Debug.Log("Remember the initial position: " + waitTime.ToString("F0"));
+            GameManager.Instance.SetMessageOnScene("Remember the initial position: " + waitTime.ToString("F0"));
             yield return null;
         }
         yield return new WaitForSeconds(0.3f);

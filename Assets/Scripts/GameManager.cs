@@ -4,12 +4,16 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+// libraries for access to UI objects
+using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     // singleton instance
     public static GameManager Instance { get; private set; }
     // cache variables
+    [SerializeField] TMP_Text messageOnScene;
     public GameObject[] grabables;
     // variables
     public Vector3[] initalPos, finalPos, userPos;
@@ -37,6 +41,7 @@ public class GameManager : MonoBehaviour
         for(int i=0; i < grabables.Length; i++)
         {
             this.initalPos[i] = this.grabables[i].transform.position;
+            this.finalPos[i] = this.initalPos[i];
         }
     }
     public void SetGrabablesPos(Vector3[] vectorIn)
@@ -68,5 +73,19 @@ public class GameManager : MonoBehaviour
             myVector3[i] = temp;
         }
         return myVector3;
+    }
+    public int CalculateScore()
+    {
+        int score = 0;
+        for(int i=0; i < this.grabables.Length; i++)
+        {
+            if (this.userPos[i] == this.initalPos[i])
+                score++;
+        }
+        return score;
+    }
+    public void SetMessageOnScene(string Message)
+    {
+        this.messageOnScene.text = Message;
     }
 }
