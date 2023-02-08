@@ -8,6 +8,10 @@ public class BoxTrigger : MonoBehaviour
     public static event boxTrigger OnBoxTrigger;
     private void OnTriggerEnter(Collider other)
     {
-        OnBoxTrigger();              
+        if(other.gameObject.tag == "Grabable")
+        {
+            Destroy(other.gameObject);
+            OnBoxTrigger();
+        }              
     }
 }

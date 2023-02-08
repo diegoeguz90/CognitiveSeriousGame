@@ -51,4 +51,8 @@ public class TutorialManager : MonoBehaviour
     {
         TutorialTask.SetActive(false);
     }
+    public void InstantiateSphere()
+    {
+        Instantiate(SphereInteractable, new Vector3(0.32100001f, 0.818000019f, 0.319999993f), Quaternion.identity);
+    }
 }

@@ -14,8 +14,8 @@ public class TutorialMenu : MonoBehaviour
         TutorialManager.Instance.EnableMenu();
         string title = "¡Presiona los botones!";
         string content = "Para que ocurra algo, debes extender tus manos " +
-            "hasta verlas. Presiona el boton rojo para salir ó " +
-            "presiona el boton verde para continuar";
+            "hasta verlas. Presiona el boton rojo para ir al juego ó " +
+            "presiona el boton verde para iniciar el tutorial";
         TutorialManager.Instance.SetDialogMessage(title, content);
     }
 

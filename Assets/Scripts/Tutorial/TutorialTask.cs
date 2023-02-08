@@ -17,6 +17,7 @@ public class TutorialTask : MonoBehaviour
             "con tus manos y moverlos hacia cualquier parte. Tu tarea consiste " +
             "en meterlo en la caja";
         TutorialManager.Instance.SetDialogMessage(title, content);
+        TutorialManager.Instance.InstantiateSphere();
     }
     void InteractableTrigger()
     {
