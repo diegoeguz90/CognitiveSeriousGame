@@ -12,10 +12,9 @@ public class PreGame : MonoBehaviour
     public static event TimeOut OnTimeOut;
     private void Start()
     {
-        GameManager.Instance.initalPos = 
-            GameManager.Shuffle(GameManager.Instance.initalPos);
-        GameManager.Instance.SetGrabablesPos(GameManager.Instance.initalPos);
-        GameManager.Instance.finalPos = GameManager.Instance.initalPos;
+        GameManager.Instance.ShuffleInitialPos();
+        GameManager.Instance.SetGrabablesPos(GameManager.Instance.initialPos);
+
         StartCoroutine("CountDown");
     }
     IEnumerator CountDown()
@@ -23,7 +22,7 @@ public class PreGame : MonoBehaviour
         while (waitTime > 0)
         {
             waitTime -= Time.deltaTime;
-            GameManager.Instance.SetMessageOnScene("Remember the initial position: " + waitTime.ToString("F0"));
+            GameManager.Instance.SetMessageOnDialogScreen("¡Hola! Pon atención", "Debes memorizar la ubicación de los objetos, tiempo limite: " + waitTime.ToString("F0"));
             yield return null;
         }
         yield return new WaitForSeconds(0.3f);

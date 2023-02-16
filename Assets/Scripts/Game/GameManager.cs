@@ -13,10 +13,10 @@ public class GameManager : MonoBehaviour
     // singleton instance
     public static GameManager Instance { get; private set; }
     // cache variables
-    [SerializeField] TMP_Text messageOnScene;
+    [SerializeField] TMP_Text titleOnScene, contentOnScene;
     public GameObject[] grabables;
     // variables
-    public Vector3[] initalPos, finalPos, userPos;
+    public Vector3[] initialPos, finalPos, userPos;
     // awake
     private void Awake()
     {
@@ -30,8 +30,11 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
 
+        QualitySettings.vSyncCount = 1;
+        Application.targetFrameRate = 90;
+
         grabables = GameObject.FindGameObjectsWithTag("Grabable");
-        initalPos = new Vector3[grabables.Length];
+        initialPos = new Vector3[grabables.Length];
         finalPos = new Vector3[grabables.Length];
         userPos = new Vector3[grabables.Length];
         SetInitialPos();
@@ -40,8 +43,8 @@ public class GameManager : MonoBehaviour
     {
         for(int i=0; i < grabables.Length; i++)
         {
-            this.initalPos[i] = this.grabables[i].transform.position;
-            this.finalPos[i] = this.initalPos[i];
+            this.initialPos[i] = this.grabables[i].transform.position;
+            this.finalPos[i] = this.initialPos[i];
         }
     }
     public void SetGrabablesPos(Vector3[] vectorIn)
@@ -52,40 +55,58 @@ public class GameManager : MonoBehaviour
              this.grabables[i].transform.position = vectorIn[i];
         }
     }
-    public Vector3[] GetGrabablesPos()
+    public void GetUserPos()
     {
         Vector3[] grabablesPos = new Vector3[this.grabables.Length];
         for(int i=0; i < this.grabables.Length; i++)
         {
-            grabablesPos[i] = this.grabables[i].transform.position;
+            this.userPos[i] = this.grabables[i].transform.position;
         }
-        return grabablesPos;
     }
-    public static Vector3[] Shuffle(Vector3[] myVector3)
+    public void ShuffleInitialPos()
     {
-        int nVector3 = myVector3.Length;
+        int nVector3 = initialPos.Length;
         System.Random _random = new System.Random();
         for(int i = nVector3 - 1; i > 0; i--)
         {
             int randomIndex = _random.Next(0, i);
-            Vector3 temp = myVector3[randomIndex];
-            myVector3[randomIndex] = myVector3[i];
-            myVector3[i] = temp;
+            Vector3 temp = initialPos[randomIndex];
+            initialPos[randomIndex] = initialPos[i];
+            initialPos[i] = temp;
         }
-        return myVector3;
+    }
+    public void ShuffleFinalPos()
+    {
+        int nVector3 = finalPos.Length;
+        System.Random _random = new System.Random();
+        for (int i = nVector3 - 1; i > 0; i--)
+        {
+            int randomIndex = _random.Next(0, i);
+            Vector3 temp = finalPos[randomIndex];
+            finalPos[randomIndex] = finalPos[i];
+            finalPos[i] = temp;
+        }
+    }
+    public void FinalPosEqualsInitialPos()
+    {
+        for(int i=0; i<this.grabables.Length; i++)
+        {
+            this.finalPos[i] = this.initialPos[i];
+        }
     }
     public int CalculateScore()
     {
         int score = 0;
         for(int i=0; i < this.grabables.Length; i++)
         {
-            if (this.userPos[i] == this.initalPos[i])
+            if (this.userPos[i] == this.initialPos[i])
                 score++;
         }
         return score;
     }
-    public void SetMessageOnScene(string Message)
+    public void SetMessageOnDialogScreen(string title, string content)
     {
-        this.messageOnScene.text = Message;
+        this.titleOnScene.text = title;
+        this.contentOnScene.text = content;
     }
 }
