@@ -7,8 +7,7 @@ using TMPro;
 public class TutorialManager : MonoBehaviour
 {
     [SerializeField] TMP_Text titleDialog;
-    [SerializeField] TMP_Text descriptionDialog;
-    [SerializeField] GameObject TutorialMenu;
+    [SerializeField] TMP_Text contentDialog;
     [SerializeField] GameObject TutorialTask;
     [SerializeField] GameObject SphereInteractable; 
 
@@ -29,19 +28,7 @@ public class TutorialManager : MonoBehaviour
     public void SetDialogMessage(string title, string content)
     {
         titleDialog.text = title;
-        descriptionDialog.text = content;
-    }
-    public void FinishTutorial()
-    {
-        Application.Quit();
-    }
-    public void EnableMenu()
-    {
-        TutorialMenu.SetActive(true);
-    }
-    public void DisableMenu()
-    {
-        TutorialMenu.SetActive(false);
+        contentDialog.text = content;
     }
     public void EnableTask()
     {
@@ -50,9 +37,5 @@ public class TutorialManager : MonoBehaviour
     public void DisableTask()
     {
         TutorialTask.SetActive(false);
-    }
-    public void InstantiateSphere()
-    {
-        Instantiate(SphereInteractable, new Vector3(0.32100001f, 0.818000019f, 0.319999993f), Quaternion.identity);
     }
 }

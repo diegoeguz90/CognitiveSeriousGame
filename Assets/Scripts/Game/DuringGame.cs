@@ -11,8 +11,8 @@ public class DuringGame : MonoBehaviour
 
     void PlayTheGame()
     {
-        GameManager.Instance.finalPos = 
-            GameManager.Shuffle(GameManager.Instance.initalPos);
+        GameManager.Instance.FinalPosEqualsInitialPos();
+        GameManager.Instance.ShuffleFinalPos();
         GameManager.Instance.SetGrabablesPos(GameManager.Instance.finalPos);
         StartCoroutine("CountDown");
     }
@@ -21,7 +21,9 @@ public class DuringGame : MonoBehaviour
         while (waitTime > 0)
         {
             waitTime -= Time.deltaTime;
-            GameManager.Instance.SetMessageOnScene("Limit time: " + waitTime.ToString("F0"));
+            GameManager.Instance.SetMessageOnDialogScreen("Tiempo limite: " + 
+                waitTime.ToString("F0"), "Rápido tienes que coger los objetos " +
+                "con un agarre de pinza y llevarlos a la ubicación inicial");
             yield return null;
         }
         yield return new WaitForSeconds(0.3f);
