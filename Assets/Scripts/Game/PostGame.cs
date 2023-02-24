@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PostGame : MonoBehaviour
 {
+    [SerializeField] float waitTime = 5;
     void CaculateScore()
     {
         GameManager.Instance.GetUserPos();
@@ -16,8 +18,8 @@ public class PostGame : MonoBehaviour
 
     IEnumerator CountDown()
     {
-        yield return new WaitForSeconds(5);
-        SceneManager.LoadScene("MemoryMessGame");
+        yield return new WaitForSeconds(waitTime);
+        SceneManager.LoadScene("Menu");
     }
 
     #region EventSuscription

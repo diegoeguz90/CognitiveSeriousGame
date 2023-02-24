@@ -1,15 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static BoxTrigger;
 
 public class TutorialTask : MonoBehaviour
 {
-    public delegate void tutorialTask();
-    public static event tutorialTask OnTaskFinish;
     public void StartTask()
     {
-        TutorialManager.Instance.DisableMenu();
         TutorialManager.Instance.EnableTask();
         string title = "¡Interactua con los objetos!";
         string content = "Hay objetos que al pasar la mano sobre ellos " +
@@ -17,7 +15,6 @@ public class TutorialTask : MonoBehaviour
             "con tus manos y moverlos hacia cualquier parte. Tu tarea consiste " +
             "en meterlo en la caja";
         TutorialManager.Instance.SetDialogMessage(title, content);
-        TutorialManager.Instance.InstantiateSphere();
     }
     void InteractableTrigger()
     {
@@ -31,16 +28,18 @@ public class TutorialTask : MonoBehaviour
             "inicio.";
         TutorialManager.Instance.SetDialogMessage(title, content);
         yield return new WaitForSeconds(3);
-        OnTaskFinish();
+        SceneManager.LoadScene("Menu");
     }
 
     #region EventSuscription
     private void OnEnable()
     {
+        TutorialWelcome.OnTimeOut += StartTask;
         BoxTrigger.OnBoxTrigger += InteractableTrigger;
     }
     private void OnDisable()
     {
+        TutorialWelcome.OnTimeOut -= StartTask;
         BoxTrigger.OnBoxTrigger -= InteractableTrigger;
     }
     #endregion

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TutorialWelcome : MonoBehaviour
 {
-    float waitTime;
+    float waitTime = 3.0f;
     // this is the event
     public delegate void TimeOut();
     public static event TimeOut OnTimeOut;
@@ -15,9 +15,7 @@ public class TutorialWelcome : MonoBehaviour
     }
     void BeginTutorial()
     {
-        TutorialManager.Instance.DisableMenu();
         TutorialManager.Instance.DisableTask();
-        waitTime = 10.0f;
         StartCoroutine("CountDown");
     }
     IEnumerator CountDown()
@@ -27,7 +25,7 @@ public class TutorialWelcome : MonoBehaviour
             waitTime -= Time.deltaTime;
             string title = "¡Bienvenido al tutorial!";
             string content = "En este tutorial aprenderas a interactuar " +
-                "con la realidad virtual mientras utilizas el Meta Quest 2." +
+                "con la realidad virtual mientras utilizas el Meta Quest 2. " +
                 "Iniciamos en: " + waitTime.ToString("F0");
             TutorialManager.Instance.SetDialogMessage(title, content);
             yield return null;
@@ -35,15 +33,4 @@ public class TutorialWelcome : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         OnTimeOut(); // raise the event
     }
-
-    #region EventSuscription
-    private void OnEnable()
-    {
-        TutorialTask.OnTaskFinish += BeginTutorial;
-    }
-    private void OnDisable()
-    {
-        TutorialTask.OnTaskFinish -= BeginTutorial;
-    }
-    #endregion
 }
