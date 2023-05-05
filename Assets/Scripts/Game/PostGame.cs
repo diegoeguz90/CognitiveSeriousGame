@@ -9,17 +9,17 @@ public class PostGame : MonoBehaviour
     [SerializeField] float waitTime = 5;
     void CaculateScore()
     {
-        GameManager.Instance.GetUserPos();
-        int score = GameManager.Instance.CalculateScore();
-        GameManager.Instance.SetMessageOnDialogScreen("Lograste organizar: "
-            + score + "/" + GameManager.Instance.grabables.Length,"");
+        SceneManager.Instance.GetUserPos();
+        int score = SceneManager.Instance.CalculateScore();
+        SceneManager.Instance.SetMessageOnDialogScreen("Lograste organizar: "
+            + score + "/" + SceneManager.Instance.grabables.Length,"");
         StartCoroutine("CountDown");
     }
 
     IEnumerator CountDown()
     {
         yield return new WaitForSeconds(waitTime);
-        SceneManager.LoadScene("Menu");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
     }
 
     #region EventSuscription

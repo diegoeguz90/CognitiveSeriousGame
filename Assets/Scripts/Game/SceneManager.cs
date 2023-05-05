@@ -8,10 +8,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class GameManager : MonoBehaviour
+public class SceneManager : MonoBehaviour
 {
     // singleton instance
-    public static GameManager Instance { get; private set; }
+    public static SceneManager Instance { get; private set; }
     // cache variables
     [SerializeField] TMP_Text titleOnScene, contentOnScene;
     public GameObject[] grabables;

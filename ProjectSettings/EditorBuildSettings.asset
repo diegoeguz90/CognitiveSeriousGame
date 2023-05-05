@@ -11,9 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: cfe267f36cbeb1c45b36f4491637bb55
-  - enabled: 1
-    path: Assets/Scenes/MemoryMessGame.unity
+  - enabled: 0
+    path: Assets/Scenes/MemoryMessGameDemo.unity
     guid: 3d3c0249df876614291fc70bc4cb0b70
+  - enabled: 1
+    path: Assets/Scenes/MemoryMessGameHome.unity
+    guid: 1b43000d03df942c9860143c9410588b
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 9fdb2dcaf26d2a4419c86c3df101249c, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: f0ea19766525f00459587f8fdaefed05, type: 2}
