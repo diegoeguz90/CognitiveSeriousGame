@@ -35,11 +35,11 @@ public class MenuManager : MonoBehaviour
     }
     public void GoToGame()
     {
-        SceneManager.LoadScene("MemoryMessGame");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MemoryMessGameHome");
     }
     public void GoToTutorial()
     {
-        SceneManager.LoadScene("Tutorial");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Tutorial");
     }
     public void Exit()
     {

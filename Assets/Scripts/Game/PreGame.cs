@@ -12,8 +12,8 @@ public class PreGame : MonoBehaviour
     public static event TimeOut OnTimeOut;
     private void Start()
     {
-        GameManager.Instance.ShuffleInitialPos();
-        GameManager.Instance.SetGrabablesPos(GameManager.Instance.initialPos);
+        SceneManager.Instance.ShuffleInitialPos();
+        SceneManager.Instance.SetGrabablesPos(SceneManager.Instance.initialPos);
 
         StartCoroutine("CountDown");
     }
@@ -22,7 +22,7 @@ public class PreGame : MonoBehaviour
         while (waitTime > 0)
         {
             waitTime -= Time.deltaTime;
-            GameManager.Instance.SetMessageOnDialogScreen("¡Hola! Pon atención", "Debes memorizar la ubicación de los objetos, tiempo limite: " + waitTime.ToString("F0"));
+            SceneManager.Instance.SetMessageOnDialogScreen("?ola! Pon atenci?", "Debes memorizar la ubicaci? de los objetos, tiempo limite: " + waitTime.ToString("F0"));
             yield return null;
         }
         yield return new WaitForSeconds(0.3f);
