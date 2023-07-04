@@ -6,6 +6,7 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     public static UIManager _instance;
+    public static UIManager Instance => _instance;
 
     [SerializeField] TMP_Text TerminalTitle;
     [SerializeField] TMP_Text TerminalContent;
